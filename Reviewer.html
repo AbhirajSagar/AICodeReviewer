@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <title>Reviewer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+        
+        body,html
+        {
+            
+            margin:0px;
+            padding:0px;
+            font-family: 'Raleway',sans-serif;
+            background-color: #282C35;
+        }
+        pre
+        {
+            margin:5px;padding:0px;overflow-x:auto;
+        }
+        .suggestions
+        {
+            transition-duration:0.5s;border-radius: 8px;display:block;padding:5px;text-decoration:none;font-family:'Raleway',sans serif;color:black;margin-top:5px;font-weight:200;
+        }
+        
+        .suggestions:hover
+        {
+            border:2px solid #2a9cd9;filter:drop-shadow(0px 0px 8px #a5d7e8);
+        }
+        .buttons
+        {
+            background-color: #6fbfea;font-family:'Raleway',sans-serif;height:35px;border:none;color:white;transition-duration:0.5s;
+        }
+        
+        .buttons:hover
+        {
+            color:#2a9cd9;border:2px solid #2a9cd9;background-color:white;transform:scale(1.1,1.1);
+        }
+        .buttons:disabled
+        {
+            background-color: rgba(223, 18, 18, 0.657);transform:scale(0.95,1);cursor:not-allowed;height:35px;
+        }
+        .greenBtn:disabled
+        {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        .material-symbols-outlined:hover
+        {
+            transform:scale(1.2,1.2);filter:drop-shadow(0px 0px 8px rgb(140, 140, 140));
+        }
+        .ratingBtn:hover
+        {
+            border:2px solid #2a9cd9;
+        }
+       
+        .stats:hover
+        {
+            box-shadow: 0px 0px 9px rgb(197, 196, 196);padding:5px;
+        }
+        .cards
+        {
+            transition-duration:0.5s;
+        }
+        .cards:hover
+        {
+            border:1px solid #6bd930;box-shadow: 0px 0px 9px rgb(197, 196, 196);
+        }
+        .greenBtn
+        {
+            background-color: #6bd930;transition-duration:0.3s;border:none;font-family : 'Raleway',sans serif;height:30px;color:white;display:block;margin-left:auto;margin-right:auto;width:80%;border-radius: 15px;
+            margin-top:0px;
+        }
+        .greenBtn:hover
+        {
+            background-color: grey;
+            color:white;
+            transform : scale(1.1,1.1);
+        }
+                /* width */
+        ::-webkit-scrollbar 
+        {
+           width: 0.5vw;
+           height:0.5vh;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track 
+        {
+           box-shadow: inset 0 0 5px grey;
+           border-radius: 10px;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb 
+        {
+           background: #2a9cd99b;
+           border-radius: 10px;
+        }
+        @keyframes rotate 
+        {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+        
+    </style>
+</head>
+<body>
+    <!--Code Rating Window-->
+    <div id = "ratingWindow" style = "cursor:default;position:fixed;top:50%;left:50%;padding:0px;height:0px;width:0px;z-index:1;overflow:hidden;border-radius:10px;transform:translate(-50%,-50%);background-color:white;border:none;filter:drop-shadow(0px 0px 8px #8ea1ab);transition-duration:0.5s">
+        <span onclick = "closeRating();" class="material-symbols-outlined" style = "position:fixed;right:5px;top:5px;cursor:default;">
+            tab_close_right
+        </span>
+        <div style = "float:left;width:50%;height:100%;padding-left:5px;padding-right:5px;">
+            <div class = "stats" style = "width:100%;height:24%;">
+                <img style = "float:left;height:100%;" src = "images/efficient.png"/>
+                <p style = "font-size:22px;font-weight: 200;margin-left : 80px;margin-top: 0px;margin-bottom:0px;display:block;">Efficiency</p>
+                <p id = "efficiencyTxt" style = "color:green;font-size:18px;font-family: 'Lato', sans-serif;margin:0px;display:block;margin-left:80px;">9.7</p>
+            </div>
+            <div class = "stats" style = "width:100%;height:24%;">
+                <img style = "float:left;height:100%;" src = "images/read.png"/>
+                <p style = "font-size:22px;font-weight: 200;margin-left : 80px;margin-top: 0px;margin-bottom:0px;display:block;">Readability</p>
+                <p id = "readabilityTxt" style = "color:green;font-size:18px;font-family: 'Lato', sans-serif;margin:0px;display:block;margin-left:80px;">8.4</p>
+            </div>
+            <div class = "stats" style = "width:100%;height:24%;">
+                <img style = "float:left;height:100%;" src = "images/reusable.png"/>
+                <p style = "font-size:22px;font-weight: 200;margin-left : 80px;margin-top: 0px;margin-bottom:0px;display:block;">Reusability</p>
+                <p id = "reusabilityTxt" style = "color:green;font-size:18px;font-family: 'Lato', sans-serif;margin:0px;display:block;margin-left:80px;">2.4</p>
+            </div>
+            <div class = "stats" style = "width:100%;height:24%;">
+                <img style = "float:left;height:100%;" src = "images/scale.png"/>
+                <p style = "font-size:22px;font-weight: 200;margin-left : 80px;margin-top: 0px;margin-bottom:0px;display:block;">Scalability</p>
+                <p id = "scalabilityTxt" style = "color:green;font-size:18px;font-family: 'Lato', sans-serif;margin:0px;display:block;margin-left:80px;">6.9</p>
+            </div>
+        </div>
+        <div style = "float:right;width:42%;height:100%;padding-left:5px;padding-right:5px;">
+            <p style = "padding-left:10px;padding-right:10px;margin-top:10px;font-size:25px;font-weight: 200;font-size:2.5rem;">
+                Stats Of Your Code Based On Artificial Intelligence
+            </p>
+            <p style = "padding-left:10px;padding-right:10px;margin-top:5px;font-size:15px;font-weight: 200;font-size:1.5rem;">
+                Apply Suggestions To Improve Code
+            </p>
+            <button class = "buttons" onclick = "closeRating();openSuggestions();getSuggestion();" style = "width:40%;position:fixed;right:2.5%;bottom:5%;border-radius:15px;height:100px;border-radius:25px;font-size:1.2rem;">
+                Improve Code
+            </button>
+        </div>
+    </div>
+    <!--End Of Rating Window-->
+    <!--Suggestions Window-->
+    <div id = "suggestionsWindow" style = "cursor:default;position:fixed;top:50%;left:50%;padding:0px;height:0px;width:0px;z-index:1;overflow-y:hidden;border-radius:10px;transform:translate(-50%,-50%);background-color:white;border:none;filter:drop-shadow(0px 0px 8px #8ea1ab);transition-duration:0.5s">
+        <span onclick = "closeSuggestions();" class="material-symbols-outlined" style = "position:fixed;right:5px;top:5px;cursor:default;">
+            tab_close_right
+        </span>
+        <h2 style = "position:fixed;top:10px;left:20px;font-weight: 200;margin:0px;color:grey;"><b>Suggestions</b></h2>
+        <p style = "position:fixed;top:40px;left:60px;font-size:15px;font-weight: 200;margin:0px;color:grey;">Apply to Improve Code</p>
+        <div style = "display:grid;height:75%;margin-top:58px;width:100%;column-gap: 5px;grid-template-columns: auto auto auto;">
+            <div  class = "cards" style = "border-radius:10px 0px 0px 10px;"><p id = "sg1" style = "text-align: center;height:65%;margin-top:5px;color:black;font-family :'Raleway',sans serif;font-weight: 200;padding-left:5px;padding-right:5px;font-size:12px;">lorem ipsum capsicum</p>                       <button class = "greenBtn"             onclick = "applySuggestion('sg1');"   id = "sg1Btn" disabled >Apply</button></div>
+            <div  class = "cards" style = "border-radius:0px;"><p id = "sg2" style = "text-align: center;              height:65%;margin-top:5px;color:black;font-family :'Raleway',sans serif;font-weight: 200;padding-left:5px;padding-right:5px;font-size:12px;">lorem ipsum dum dfjhd sur djsdujsd </p>                  <button class = "greenBtn"   onclick = "applySuggestion('sg2');"   id = "sg2Btn" disabled >Apply</button></div>
+            <div  class = "cards" style = "border-radius:0px 10px 10px 0px;"><p id = "sg3" style = "text-align: center;height:65%;margin-top:5px;color:black;font-family :'Raleway',sans serif;font-weight: 200;padding-left:5px;padding-right:5px;font-size:12px;">lorem ipsum capsicjkdfgjkfg fjhfg</p> <button class = "greenBtn"                      onclick = "applySuggestion('sg3');"   id = "sg3Btn" disabled >Apply</button></div>
+        </div>
+    </div>
+    <!--End Of Suggestions Window-->
+    <!--Settings Window-->
+    <div id = "settingsWindow" style = "display:flex;justify-items:center;align-items:center;position:fixed;top:50%;left:50%;padding:0px;height:0%;width:0%;z-index:1;overflow:hidden;border-radius:10px;transform:translate(-50%,-50%);background-color:white;border:none;filter:drop-shadow(0px 0px 8px #8ea1ab);transition-duration:0.5s">
+        <div>
+            <label style = "font-size:25px;font-weight: 200;">GPT Key</label>
+        <span  id = "visibleBtn" onclick = "toggleVisibility();" class="material-symbols-outlined" style = "cursor:default;position:fixed;border-radius:200px;padding:5px;top:20px;right:20px;">
+            visibility
+        </span>
+           <input id = "keyInput" class = "keyinput" placeholder = "Enter Your ChatGPT key here to start using..." type = "password" style = "height:25px;margin-top:25px;width:90%;padding-top:5px;color:white;border:none;font-family:'Raleway',sans serif;padding-left:15px;padding-right:15px;padding-bottom:5px;font-size:15px;background-color:#a5d7e8;border:none;border-radius:20px;">
+           <button class = "buttons" onclick = "SaveKey();" style = "width:50%;float:right;margin-top:5px;border-radius:0px 20px 20px 0px;" >Save Key</button>
+           <button class = "buttons" onclick = "closeSettings();" style = "width:50%;float:left;margin-top:5px;border-radius:20px 0px 0px 20px;background-color:lightgrey;" >Cancel</button>
+        
+        </div>
+        <!--Loading Screen After Api Enter-->
+        <div id = "keyLoadDisplay" style = "overflow:hidden;width:96%;background-color:white;height:98%;z-index:2;position:fixed;margin:0px;padding:0px;top:0px;left:0px;display:none;">
+            <img style = "display:block;height:75%;width:35%;margin-top:5px;margin-left:auto;margin-right:auto;"src = "images/eco.gif"/>
+            <p id = "keyVerificationStatus" style = "display:block;text-align:center;width:100%;font-size:20px;margin-top:0px;">Verifying Key...</p>
+        </div>
+        
+    </div>
+    <!--End Of Settings Window-->
+    <!--Major Element-->
+    <div  id = "sidenav" style = "cursor:default;padding:10px;transition-duration:0.5s;float:left;background-color:#E0F4FF;width:30%;height:100%;overflow-y: scroll;position:fixed;scroll-behavior: smooth;">
+        
+        <div onclick = "openRating();" class = "ratingBtn" style = "display:flex;justify-content: center;align-items: center;height:10%;padding:10px;background-color:white;border-radius:10px;">
+            <p style = "margin:0px;padding:0px;font-weight: 200;width:40%;display:inline-block;height:auto;font-size:1.8em;">Code Rating</p>
+            <p id = "averageCodeStats" style = "color:green;text-align:right;width:55%;font-family: 'Lato', sans-serif;display:inline-block;margin:0px;padding:0px;font-size:1.4rem"><b>0.0</b></p>
+        </div>
+        <button onclick = "AutoComment();" id = "autoCommentsBtn" class = "buttons" style = "width:90%;display:block;margin-left:auto;margin-right:auto;margin-top:10px;margin-bottom:10px;border-radius:10px;height:8%;font-size:1.2rem;" >
+            Auto-Comments&nbsp;&nbsp;&nbsp;<b>&lt; &gt;</b>
+        </button>
+        <div style = "height:auto;padding:10px;
+        background-color:white;border-radius:10px;margin-top:5px;height:15%;">
+            <p style = "margin:0px;padding:0px;font-weight: 200;width:100%;display:block;text-align:center;font-size:1.5rem;"><b>Suggestions</b></p>
+            <button class = "buttons" onclick = "openSuggestions();getSuggestion();" style = "width:90%;margin-top:15px;margin-left:auto;margin-right:auto;display:block;border-radius: 10px  10px 10px 10px;height:60%;font-size:1.1rem;">Generate Suggestions</button>
+        </div>
+        <div style = "height:auto;padding:10px;background-color:white;border-radius:10px;margin-top:5px;" >
+            <p  onclick = "showDrop();" id = "intentionInfo" style = "display:inline-block;margin:0px;padding:0px;font-size:1.4rem;">Intention (Predicted By AI)</p>
+            <span id = "expandIcon" onclick = "showDrop();" style = "float:right;cursor:default;" class="material-symbols-outlined">expand_more</span>
+            <textarea  id = "intentionTxt" style = "transition-duration: 0.5s;border:none;background-color:#6fbfea;border-radius:10px 10px 10px 10px;padding:0px;margin-top:0px;display:block;margin-left:auto;margin-right:auto;width:90%;height: 0px;font-family:'Raleway',sans serif;color:white;font-size:18px;"></textarea>
+        </div>
+        <div style = "height:auto;padding:10px;background-color:white;border-radius:10px;margin-top:5px;margin-bottom:20px;" >
+            <p onclick = "showIssueDrop();" style = "display:inline-block;margin:0px;padding:0px;font-size:1.4rem;">Issue with Code</p>
+            <span id = "expandIssueIcon" onclick = "showIssueDrop();" style = "float:right;cursor:default;" class="material-symbols-outlined">expand_more</span>
+            <textarea  id = "issueTxt" placeholder = "Explain the issue with code" style = "transition-duration : 0.5s;border:none;background-color:#6fbfea;border-radius:10px 10px 10px 10px;padding:0px;margin-top:0px;width:auto;display:block;margin-left:auto;margin-right:auto;width:90%;height: 0px;font-family:'Raleway',sans serif;color:white;font-size:18px;"></textarea>
+            <button class = "buttons" style = "display:none;width:100%;margin-top:5px;border-radius:0px 0px 10px 10px">Solve Issue</button>
+        </div>
+    </div>
+    <!--Code Window-->
+    <div id = "codewindow" style = "padding:0px;float:right;background-color:#282C35;width:69%;height:100%;transition-duration:0.5s;">
+            <!--Top Bar-->
+                <div style = "height:30px;width:100%;margin-top:1px;background-color: #2a9cd9;margin-left:auto;margin-right:auto;">
+                    <p id = "fileName" style = "margin-left:15px;display:inline-block;margin-top:5px;margin-bottom:5px;color:white;"></p>
+                    <span onclick = "openSettings();" class="material-symbols-outlined" style = "margin-top:3px;margin-bottom:3px;margin-left:10px;margin-right:10px;float: right;color:white;cursor:pointer">settings</span>
+                    <span class="material-symbols-outlined" style = "margin-top:3px;margin-bottom:3px;margin-left:10px;margin-right:0px; float: right;color:white;cursor:pointer">deployed_code_update</span>
+                    <span class="material-symbols-outlined" onclick = "toggleSideNav();" style = "margin-top:3px;margin-bottom:3px;margin-left:10px;margin-right:0px; float: right;color:white;cursor:pointer">dock_to_right</span>
+                    <span class="material-symbols-outlined" onclick = "refresh();" style = "margin-top:3px;margin-bottom:3px;margin-left:10px;margin-right:0px; float: right;color:white;cursor:pointer">update</span>
+                    <span id = "loading" class="material-symbols-outlined" style = "display:none;margin-top:3px;margin-bottom:3px;margin-left:10px;margin-right:0px; float: right;color:white;cursor:pointer;animation: rotate infinite 2s linear;">cycle</span>
+                </div>
+            <!--End Of Top Bar-->
+            <div style = "padding:0px;margin:0px;width:100%;height:auto;background-color: #282C35;">
+                <pre style = "margin-left:15px;">
+                    <code style = "padding:5px;margin:0%;height:100%;font-size:1rem;" id = "codeWindow" ></code>
+                </pre>
+            </div>
+    </div>
+    <!--End Of Code Window-->
+
+    <!--End Of Major Element-->
+    <script>
+        document.getElementById("codeWindow").innerHTML = sessionStorage.getItem("codeText");
+        document.getElementById("intentionTxt").readOnly = true;
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src = "majorpage.js"></script>
+    <script>hljs.highlightAll();</script>
+    
+
+</body>
+</html>

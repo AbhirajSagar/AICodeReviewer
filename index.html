@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paste Your Code</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;500&display=swap');
+        body,html
+        {
+            margin:0;
+            padding:0;
+            height:100%;
+            background-image: -moz-linear-gradient(to right,#19376D,#1145a5);
+            background-image: -o-repeating-linear-gradient(to right,#19376D,#1145a5);
+            background-image: -webkit-linear-gradient(to right,#19376D,#1145a5);
+            background-image: linear-gradient(to right,#19376D,#1145a5);
+            font-family : 'Raleway',sans serif;
+            scroll-behavior: smooth;
+        }
+        .uploadbtn
+        {
+            display:block;margin: auto;width:40%;height:45px;background-color:#A5D7E8;border:none;filter:drop-shadow(0px 0px 8px #A5D7E8);border-radius:80px;color:white;font-family: 'Raleway',sans serif;font-size:1.0rem;
+            transition-duration: 0.7s;
+            margin-bottom:20px;
+        }
+        .pastebtn
+        {
+            display:block;margin: auto;width:60%;height:55px;background-color:#A5D7E8;border:none;filter:drop-shadow(0px 0px 8px #A5D7E8);border-radius:80px;color:white;font-family: 'Raleway',sans serif;font-size:1.0rem;
+            transition-duration: 0.7s;
+            margin-bottom:20px;
+        }
+        .uploadbtn:hover
+        {
+            background-color: white;
+            border:2px solid #1145a5;
+            color:#19376D;
+        }
+        .pastebtn:hover
+        {
+            background-color: white;
+            border:2px solid #1145a5;
+            color:#19376D;
+        }
+        .material-symbols-outlined
+        {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+            cursor:default;
+
+        }
+        .material-symbols-outlined:hover
+        {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24;
+            color:#A5D7E8;
+            filter:drop-shadow(0px 0px 8px #A5D7E8);
+            cursor:default;
+        }
+        .langbtn
+        {
+            transition-duration: 0.3s;
+        }
+        .langbtn:hover
+        {
+            transform: scale(0.9,0.9);
+            filter:drop-shadow(0px 0px 8px #A5d7e8);
+        }
+        .langicon:hover
+        {
+            transform:scale(1.17,1.17);
+            filter:drop-shadow(0px 0px 8px #A5d7e8);
+        }
+        .outlinebutton
+        {
+            float:right;height:10vh;width:30%;background-color:transparent;color:white;font-family : 'Raleway',sans-serif;padding:5px;border-radius : 20px;font-size :large;border:2px solid white;transition-duration: 0.5s;display:none;
+        }
+        .outlinebutton:hover
+        {
+            background-color:white;color:#576CBC;
+        }
+        .codeInput
+        {
+            font-family: 'Raleway', sans-serif;font-size:1.2rem; color: white; padding: 0px; height: 0px; width: 10vw; display: block; margin-left: auto; margin-right: auto; margin-top: 50px; margin-bottom: 20px; background-color: #0B2447; border-radius: 20px; overflow-y: scroll; transition-duration: 1s;
+        }
+        .langgrid
+        {
+            margin-left:auto;margin-right:auto;margin-top:95px;margin-bottom:40px;width:95%;height:max-content;display:grid;grid-template-columns:  auto auto auto auto auto;padding:5px;
+        }
+        @media screen and (max-width : 500px)
+        {
+            .codeInput
+            {
+                font-family: 'Raleway', sans-serif;font-size:1.2rem; color: white; padding: 0px; height: 0px; width: 10vw; display: block; margin-left: auto; margin-right: auto; margin-top: 50px; margin-bottom: 20px; background-color: #0B2447; border-radius: 20px; overflow-y: scroll; overflow-x : scroll; transition-duration: 1s;
+            }
+        }
+        @media screen and (max-width:460px){
+            .langgrid{
+                grid-template-columns: 80% ;
+                padding:5px;
+                
+            }
+            
+        }
+        @media screen and (max-width:680px) and (min-width:460px){
+            .langgrid{
+                grid-template-columns: auto auto;
+            }
+        }
+        @media screen and (max-width:1050px)  and (min-width : 680px){
+            .langgrid{
+                grid-template-columns: auto auto auto;
+            }
+        }
+
+    </style>
+    
+</head>
+<body>
+    <!--This is Language Selection-->
+    <div id = "menu" style = "position:fixed;top:0;left:0;width:100%;height:0%;margin:0%;padding:0%;z-index:5;background-color: #19376D;overflow-y:scroll;transition-duration: 0.5s;">
+        <nav id = "navigation" style = "width:100%;height:10%;background-color:#576CBC;position:fixed;top:0;left:0;z-index:5;display:none;">
+            <h2 style = "text-align:left;color:white;font-family: 'Raleway',sans-serif;">&nbsp;&nbsp;&nbsp;Select the Language</h2>
+        
+            <span onclick = "closeMenu();"class="material-symbols-outlined" style = "position:fixed;color:white;top:20px;right:10px;">close</span>
+            
+        </nav>
+        <div class = "langgrid">
+            <button onclick = "selectLanguage('css');" id = "css" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/css.png" style = "padding-left:5px;float:left;height:80%;width:23%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">CSS</h3>
+            </button>
+            <button onclick = "selectLanguage('go');" id = "go" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/go.png" style = "padding-left:5px;float:left;height:50%;width:35%;margin:20px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">Go</h3>
+            </button>
+            <button onclick = "selectLanguage('java');" id = "java" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/java.png" style = "padding-left:5px;float:left;height:88%;width:22%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">Java</h3>
+            </button>
+            <button onclick = "selectLanguage('javascript');" id = "javascript" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/javascript.png" style = "padding-left:5px;float:left;height:80%;width:28%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">Javascript</h3>
+            </button>
+            <button onclick = "selectLanguage('php');" id = "php" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/php.png" style = "padding-left:5px;float:left;height:80%;width:35%;margin-top:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">PHP</h3>
+            </button>
+            <button onclick = "selectLanguage('ruby');" id = "ruby" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/ruby.png" style = "padding-left:5px;float:left;height:80%;width:28%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">Ruby</h3>
+            </button>
+            <button onclick = "selectLanguage('sql');" id = "sql" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/sql.png" style = "padding-left:5px;float:left;height:90%;width:25%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">SQL</h3>
+            </button>
+            <button onclick = "selectLanguage('swift');" id = "swift" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/swift.png" style = "padding-left:5px;float:left;height:80%;width:28%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">Swift</h3>
+            </button>
+            <button onclick = "selectLanguage('typescript');" id = "typescript" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/typescript.png" style = "padding-left:5px;float:left;height:80%;width:25%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">TypeScript</h3>
+            </button>
+            <button onclick = "selectLanguage('csharp');" id = "csharp" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/csharp.png" style = "padding-left:5px;float:left;height:90%;width:27%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">C#</h3>
+            </button>
+            <button onclick = "selectLanguage('cpp');" id = "cpp" class="langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/cpp.png" style = "padding-left:5px;float:left;height:90%;width:25%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">C++</h3>
+            </button>
+            <button onclick = "selectLanguage('python');" id = "python" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/python.png" style = "padding-left:5px;float:left;height:90%;width:25%;margin-top:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">Python</h3>
+            </button>
+            <button onclick = "selectLanguage('nodejs');" id = "nodejs" class = "langbtn" style = "margin-left:5px;margin-right:5px;margin-top:5px;margin-bottom:5px;background-color:#0B2447;border:none;color:white;font-family:'Raleway',sans serif;border-radius:10px;height:80px;width:95%;">
+                <img src = "images/nodejs.png" style = "padding-left:5px;float:left;height:85%;width:28%;margin:5px;"/>
+                <h3 style = "float:right;margin:25px;font-weight: 200;">Node.js</h3>
+            </button>
+        </div>
+    
+    </div>
+    <!--End of Language Selection-->
+    
+        <div style = "padding:20px;overflow-y:auto;height:auto;">
+            <h1 style = "color:white;text-align:center;margin-bottom:0px;">Code Reviewer</h1>
+            <h3 style = "margin-top:2px;font-size:1.9rem;color: white;text-align:center;text-decoration: none;font-weight:200">Select a File or Paste Code</h3>
+            <input type = "file" id = "fileSelector" style = "pointer-events: none;display:block;position:absolute;margin: auto;width:20%;height:45px;opacity:0;"/>
+            <button id = "uploadBtn" class = "uploadbtn" onclick = "document.getElementById('fileSelector').click();">Upload File</button>
+            <button  id = "pasteBtn" onclick = "prepareForPaste();" class = "pastebtn">Paste From Clipboard</button>
+            <textarea placeholder = "Paste Your Code Here ....."id="codePaste" class = "codeInput">
+                
+            </textarea>
+            <div id = "fileInfo" style = "overflow:hidden;padding-top:15px;padding-bottom:15px;padding-left:35px;padding-right:35px;margin-top:27px;height:90px;width:40%;display:none;margin-left:auto;margin-right:auto;background-color:#0B2447;border-radius:80px;">
+                <h3 id = "fileName" style = "float:right;text-align: right;margin:35px;color:white;font-weight:200;">No File Chosen</h3>
+                <img onclick = "openMenu();" id = "icon" class = "langicon" style = "height:100%;width:100px;margin:auto;display:block;"/>
+            </div>
+            <div id = "langChoser" style = "overflow:hidden;padding-top:15px;padding-bottom:15px;padding-left:35px;padding-right:35px;margin-top:27px;height:90px;width:15%;display:none;margin-left:auto;margin-right:auto;background-color:#0B2447;border-radius:80px;display:none;justify-content: center;align-items:center;">
+                <img id = "secicon" class = "langicon" onclick = "openMenu();" src = "images/qm.png" style = "height:100%;width:100px;margin:auto;display:block;"/>
+            </div>
+            <button onclick = "window.location.href = 'Reviewer.html';" id = "reviewBtn" class = "outlinebutton" style = "margin-top:30px ;">
+                Review Now
+            </button>
+            <button  onclick = "SaveDataFromInput(); window.location.href = 'Reviewer.html';" id = "reviewBtnPaste" class = "outlinebutton" style = "margin-top:30px ;">
+                Review Now
+            </button>
+        </div>
+   
+    
+   
+    
+    <script src = "fileupload.js">
+    </script>
+</body>
+</html>
